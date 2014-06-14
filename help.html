@@ -1,0 +1,279 @@
+<html>
+<head>
+	<title>Instrucciones de la práctica 4</title>
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+</head><body>
+	<h1>Instrucciones de la práctica 4</h1>
+  <div class="step">
+    <h2>Antes de comenzar el ejercicio</h2>
+    <p>Crear la DB desde el fichero todo-db.py</p>
+    <p>Comprobar las opciones de ejecución del servidor y las rutas definidas</p>
+    <p>Ejecutar la aplicación y comenzar a jugar con ella</p>
+  </div>
+  <div class="step">
+    <h2>Descargar el framework Foundation</h2>
+    <p>Desde la página <a href="http://foundation.zurb.com/develop/download.html">http://foundation.zurb.com/develop/download.html</a>, seleccionando las caractrísticas deseadas (p. ej.: colores) y descargando el paquete con las opciones.</p>
+    <p>Descomprimir en un directorio conocido de su elección y comprobar el contenido del paquete. Debería corresponderse con la estructura y contenidos descritos en las secciones anteriores.</p>
+    <p>Buscar el fichero index.html y comprobar el código fuente (ficheros CSS, archivos de script JS, rutas y archivos de iniialización) y mostrarlo en nuestro navegador favorito.</p>
+    <ul>
+      <li>Enlazar el script modernizr.js y la hoja de estilos foundation.css en la sección head de nuestra página.</li>
+      <li>Añadir los scripts de jQuery y Foundation (foundation.min.js) antes de la etiqueta final del elemento body</li>
+      <li>Hacer la llamada a foundation.</p>
+    </ul>
+    <pre>
+    &lt;head>
+      ...
+      &lt;link rel="stylesheet" type="text/css" href="css/foundation.css">
+      &lt;script src="js/modernizr.js">&lt;/script>
+      ...
+    &lt;/head></pre>
+    <pre>
+      ...
+    &lt;script src="js/jquery.js">&lt;/script>
+    &lt;script src="js/foundation.min.js">&lt;/script>
+    &lt;script>
+      $(document).foundation();
+    &lt;/script>
+      ...</pre>
+      <p>Mover el archivo foundation.css al directotio css.</p>
+      <p>Mover foundation.min.js, modernizr.js y jquery.js al directorio js.</p>
+  </div>
+  <div class="step">
+    <h2>Preparar rutas estáticas en el fichero de aplicación de Bottle</h2>
+    <p>Buscar y renombar la función de la ruta /css para servir ficheros CSS en el directorio /css</p>
+    <pre>
+    @route('/css/:filename', name='css')
+    def server_static_css(filename):
+        return static_file(filename, root='./css')</pre>
+    <p>Crear la ruta /js y su función para servir archivos JS en el directorio /js</p>
+    <pre>
+    @route('/js/:filename', name='js')
+    def server_static_scripts(filename):
+        return static_file(filename, root='./js')</pre>
+    <ul>
+      <li>Enlazar los archivos modernizr.js y foundation.css en la sección head de la plantilla head.tp. Además, eliminar el archivos CSS y carga de font actuales. Nótese la barra (/) en las rutas y definiciones de directorio.</li>
+      <li>Añadir los scripts jQuery y de foundation (foundation.min.js) antes de la etqiqueta de cierre del elemento body en la plantilla make_table.tpl. De nuevo, nótese la definición absoluta de rutas y directorios.</li>
+      <li>Llamar al método foundation para inicializar el framework.</li>
+    </ul>
+    <pre>
+    &lt;head>
+      &lt;title>{{title}}&lt;/title>
+      &lt;link rel="stylesheet" type="text/css" href="/css/foundation.css">
+      &lt;script src="/js/modernizr.js">&lt;/script>
+    &lt;/head></pre>
+    <pre>
+      ...
+      &lt;script src="/js/jquery.js">&lt;/script>
+      &lt;script src="/js/foundation.min.js">&lt;/script>
+      &lt;script>
+        $(document).foundation();
+      &lt;/script>
+    &lt;/body></pre>
+    <p>Hacer lo mismo para las otras plantillas globales, los ficheros new_task.tpl y edit_task.tpl.</p>
+    <p>En este punto los estilos por defecto se aplican y podrían aparecer algunos errores al presentar las páginas.</p>
+  </div>
+  <div class="step">
+    <h2>Definir la disposición de las páginas</h2>
+    <p>Leer y aprender sobre retículas en la documentación oficial de Foundation: <a href="http://foundation.zurb.com/docs/components/grid.html">Grid</a></p>
+    <h3>Layout: centrado con retícula</h3>
+    <p>Usar elementos div de la clase row para envolver el contenido.</p>
+    <p>Usar elementos div de la clase columns a su vez dentro para definir la retícula.</p>
+    <pre>
+    &lt;div class="row">
+      &lt;div class="small-9 small-centered columns">
+        &lt;h1>Welcome to the ToDo application&lt;/h1>
+      &lt;/div>
+    &lt;/div>
+    
+    &lt;div class="row">
+      &lt;div class="small-9 small-centered columns">
+        ...
+      &lt;/div>
+    &lt;/div></pre>
+    <p>Trabajar de esta forma con las plantillas make_table.tpl, new_task.tpl y edit_task.tpl.</p>
+    <h3>Footer: centrado con retícula</h3>
+    <p>Usar elementos div de la clase row para envolver el contenido.</p>
+    <p>Usar elementos div de la clase columns a su vez dentro para definir la retícula.</p>
+    <pre>
+    &lt;footer>
+      &lt;div class="row">
+        &lt;div class="small-9 small-centered columns">
+          ...
+        &lt;/div>
+      &lt;/div>
+    &lt;/footer></pre>
+    <h3>Message template: centrado con retícula y notificaciones</h3>
+    <p>Leer y aprender sobre notificaciones en la documentación oficial de Foundation: <a href="http://foundation.zurb.com/docs/components/alert_boxes.html">Alert boxes</a></p>
+    <p>El archivo message.tpl es una plantilla global y debería incluir los scripts JS y la inicialización del framework Foundation.</p>
+    <pre>
+      ...
+      &lt;script src="/js/jquery.js">&lt;/script>
+      &lt;script src="/js/foundation.min.js">&lt;/script>
+      &lt;script>
+        $(document).foundation();
+      &lt;/script>
+    &lt;/body></pre>
+    <p>Usar elementos div de la clase row para envolver el contenido.</p>
+    <p>Usar elementos div de la clase columns a su vez dentro para definir la retícula.</p>
+    <pre>
+    &lt;div class="row">
+      &lt;div class="small-9 small-centered columns">
+        &lt;h1>Important message&lt;/h1>
+      &lt;/div>
+    &lt;/div>
+    
+    &lt;div class="row">
+      &lt;div class="small-9 small-centered columns">
+        ...
+      &lt;/div>
+    &lt;/div></pre>
+    <p>Envolver el mensaje con el código asociado a las notificaciones</p>
+    <pre>
+    &lt;div data-alert class="alert-box">
+      {{message}}
+      &lt;a href="#" class="close">&times;</a>
+    &lt;/div></pre>
+  </div>
+  <div class="step">
+    <h2>Slideshow: presentar información sin tablas</h2>
+    <p>Leer y aprender sobre el componente Orbit Slider (slideshow) en la documentación oficial del framework Foundation: <a href="http://foundation.zurb.com/docs/components/orbit.html">Orbit</a></p>
+    <p>Crear las etiquetas HTML necesarias para definir un carrusel de contenido como se muestra en la documentación para presentar las tareas en lugar de la tabla</p>
+    <pre>
+    &lt;ul class="example-orbit" data-orbit>
+    %for row in rows:
+      &lt;li>
+        &lt;div>
+          &lt;h2>Task #{{row[0]}}&lt;/h2>
+          &lt;h3>{{row[1]}}&lt;/h3>
+          &lt;p>&lt;a href="/edit/{{row[0]}}">edit&lt;/a>&lt;/p>
+        &lt;/div>
+      &lt;/li>
+    %end
+    &lt;/ul></pre>
+  </div>
+  <div class="step">
+    <h2>Disposición de formularios y validación</h2>
+    <p>Leer y aprender sobre formularios en la documentación oficial de Foundation: <a href="http://foundation.zurb.com/docs/components/forms.html">Forms</a></p>
+    <h3>Forms: disposición básica</h3>
+    <p>Envolver los elementos inputs con etiquetas div de la clase row y la definición de columnas apropiada.</p>
+    <p>Añadir labels y pistas visuales para ayudar a los usuarios a rellenar los formularios declarados en la plantilla  new_task.tpl.</p>
+    <pre>
+    &lt;form action="/new" method="get">  
+      &lt;div class="row">
+        &lt;div class="large-12 columns">
+          &lt;label>Task description &lt;small>Required&lt;/small>&lt;/label>
+          &lt;input type="text" name="task" placeholder="Type a new task here...">
+        &lt;/div>
+      &lt;/div>
+      &lt;div class="row">
+        &lt;div class="large-12 columns">
+          &lt;input type="submit" name="save" value="save" class="small button">
+        &lt;/div>
+      &lt;/div>
+    &lt;/form></pre>    
+    <p>Hacer los mismo con la plantilla edit_task.tpl.</p>
+    <pre>
+    &lt;form action="/edit/{{no}}" method="get">  
+      &lt;div class="row">
+        &lt;div class="large-8 columns">
+          &lt;label>Task description &lt;small>Required&lt;/small>&lt;/label>
+          &lt;input type="text" name="task" placeholder="Type a new task here...">
+        &lt;/div>
+        &lt;div class="large-4 columns">
+          &lt;label>Status &lt;small>Required&lt;/small>&lt;/label>
+          &lt;select name="status">
+          &lt;option>open&lt;/option>
+          &lt;option>closed&lt;/option>
+          &lt;/select>
+        &lt;/div>
+      &lt;/div>
+      &lt;div class="row">
+        &lt;div class="large-12 columns">
+          &lt;input type="submit" name="save" value="save" class="small button">
+        &lt;/div>
+      &lt;/div>
+    &lt;/form></pre>    
+
+    <h3>Forms: validación</h3>
+    <p>Leer y aprender sobre validación de formularios HTML5 en la documentacion oficial de Foundation: <a href="http://foundation.zurb.com/docs/components/abide.html">Abide</a></p>
+    <p>Añadir el atributo especial data-abide a la etiqueta de comienzo del elemento form.</p>
+    <p>Añadir los mensajes de error con la clase error como siguiente elemento de cada elemento input del formulario.</p>
+    <p>Configurar la validación con los atributos de requerido y patrones donde se necesite en el fichero new_task.tpl.</p>
+    <pre>
+    &lt;form action="/new" method="get" data-abide>  
+      &lt;div class="row">
+        &lt;div class="large-12 columns">
+          &lt;label>Task description &lt;small>Required&lt;/small>&lt;/label>
+          &lt;input type="text" name="task" placeholder="Type a new task here..." required>
+          &lt;small class="error">Task description cannot be null.&lt;/small>
+        &lt;/div>
+      &lt;/div>
+      &lt;div class="row">
+        &lt;div class="large-12 columns">
+          &lt;input type="submit" name="save" value="save" class="small button">
+        &lt;/div>
+      &lt;/div>
+    &lt;/form></pre>    
+    <p>Hacer lo mismo con el fichero de la plantilla edit_task.tpl.</p>
+    <pre>
+    &lt;form action="/edit/{{no}}" method="get" data-abide>  
+      &lt;div class="row">
+        &lt;div class="large-8 columns">
+          &lt;label>Task description &lt;small>Required&lt;/small>&lt;/label>
+          &lt;input type="text" name="task" placeholder="Type a new task here..." required>
+          &lt;small class="error">Task description cannot be null.&lt;/small>
+        &lt;/div>
+        &lt;div class="large-4 columns">
+          &lt;label>Status &lt;small>Required&lt;/small>&lt;/label>
+          &lt;select name="status">
+          &lt;option>open&lt;/option>
+          &lt;option>closed&lt;/option>
+          &lt;/select>
+        &lt;/div>
+      &lt;/div>
+      &lt;div class="row">
+        &lt;div class="large-12 columns">
+          &lt;input type="submit" name="save" value="save" class="small button">
+        &lt;/div>
+      &lt;/div>
+    &lt;/form></pre>    
+
+  </div>
+  <div class="step">
+    <h2>Slideshow: robots for fun</h2>
+    <p><a href="http://robohash.org">Robohash</a> es una herramineta online para crear imágenes de ROBOT a partir del texto que forma una URL.</p>
+    <p>Usar esta herramienta para crear las imágenes del carrusel con la descripción de la tarea como título</p>
+    <ul>
+      <li>Crear una nueva ruta /robots para mostrar las tareas con las imágenes de los robots. Nótese que se trata de una función similar a la que aparece para la ruta /todo pero con una plantilla diferente</li>
+      <li>Crear una nueva plantilla make_robots.tpl con un carrusel de imágenes. Esta plantilla es similar a make_table.tpl pero con código diferente para el componente orbit.</li>
+    </ul> 
+    <pre>
+    @route('/robots')
+    def todo_robot_list():
+        conn = sqlite3.connect('todo.db')
+        c = conn.cursor()
+        c.execute("SELECT id, task FROM todo WHERE status LIKE '1';")
+        result = c.fetchall()
+        c.close()
+        output = template('templates/make_robots', rows=result, title='Show open tasks')
+        return output</pre>
+    <p>El código fuente del componente orbit será como sigue:</p>
+    <pre>
+    &lt;ul class="example-orbit" data-orbit>
+    %for row in rows:
+      &lt;li>
+        &lt;img src="https://robohash.org/{{row[1]}}">
+        &lt;div class="orbit-caption">
+          {{row[1]}} &lt;a href="/edit/{{row[0]}}">edit&lt;/a>
+        &lt;/div>
+      &lt;/li>
+    %end
+    &lt;/ul></pre>  
+  </div>
+  <footer>
+  <p><a href="/">Show all tasks...</a></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+El framework de Foundation es más sencillo de Bootstrap. Lo utiliza el Wasington Post. 
+
+Bootstrap es el más famoso y ha sido desarrollado por el equipo de desarrollo de Twitter.
+
+Foundation
+==========
+Ha elaborado mucho la responsividad. Ej. el menú tiene la función collapse cuando se estrecha el tamaño de la pantalla. 
+
+Carpeta js
+----------
+foundation.min.js es un único fichero con todas las funciones.
+La carpeta foundtion tiene todas las funciones por separados
+En vendor son importnates jquery y modernizer.
+
+modernizer es un js que hace que los navegadores antiguos se comporten como los nuevos.
+
+jquery - hay muchas versiones de js y los navegadores lo pueden entender de diferentes formas. JQuery es un lenguaje que permite programar en un lenguaje común. Jquery detecta el navegador y le entrega un determinado js. 
+
+robots.txt - ordenes para los buscadores. 
+
+Fichero HTML
+------------
+Head - contiene meta información, links a las hojas de estilos. 
+	Hay una llamada al js modernizr de foundation para que al cagar la página los navegadores viejos sepan interpretar.
+
+Los elementos js se cargan justo al final del body, cuando ya está todo cargado.
+Carga los componentes jquery
+Carga componentes de foundation.min.js
+$(document)... Es la llamada para usar foundation.

@@ -1,0 +1,97 @@
+/* TYPOGRAPHY
+/* -------------------------------------------------- */
+
+html, body * {
+	font-family: 'Sintony', sans-serif;
+}
+
+/* LAYOUT
+/* -------------------------------------------------- */
+
+body {
+	font-size: 10pt;
+	line-height: 12pt;
+	width: 800px;
+	margin: 20px auto;
+	background: url('http://macapper.com/wp-content/uploads/2009/01/application.png') 10px 10px no-repeat;
+	background-size: 150px;
+}
+
+footer {margin-top: 50px;}
+
+/* COMMON STYLES
+/* -------------------------------------------------- */
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover{
+	font-weight: bold;
+}
+
+pre {
+	font-family: monospace, courier;
+	padding:5px;
+	border: 1px dashed #d1d1d1;
+	background-color: #f1f1f1;
+	font-size: 9pt;
+	line-height: 9pt;
+}
+
+div.step {
+	padding: 10px;
+}
+
+div.step:hover {
+	background-color: #f9f9f9;
+}
+
+/* FORMS
+/* -------------------------------------------------- */
+
+input {
+	font-size: 10pt;
+	line-height: 12pt;
+	border: none;
+	outline: none;
+}
+
+
+/* TABLES
+/* -------------------------------------------------- */
+
+table {
+	font-size: 10pt;
+	line-height: 12pt;
+	border-collapse: collapse;
+	border: none;
+	width: 100%;
+}
+
+tr {
+	border-top: 1px solid rgba(0,0,0,.15);
+	border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+td {
+	padding: 4px 10px;
+	opacity: .35;
+}
+
+td.centered {
+	text-align: center;
+}
+
+td.centered a {
+	opacity: 0;
+}
+
+tr:hover td {
+	background: #f1f1f1;
+	opacity: 1;
+}
+
+tr:hover a {opacity: 1;}
+

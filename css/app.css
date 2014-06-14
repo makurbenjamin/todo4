@@ -1,0 +1,52 @@
+body{
+	background-color: #eff;
+
+}
+.myheader{
+	border-bottom: 3px solid black;
+	text-align: center;
+}
+a {
+	color:#777;
+	text-decoration: none;
+}
+a:hover{
+	color:#555;
+}
+.mymenu{
+	background-color: #ccc;
+	margin-bottom: 15px;
+	padding:5px;
+	color:white;
+	border-bottom: 3px solid black;
+}
+.mymess1{
+	border:1px solid gray;
+	padding: 10px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+.myboxtask{
+	border-radius: 10px;
+	background-color: #aaa;
+}
+.myinfo{
+	border:1px solid gray;
+	padding: 10px;
+	border-radius: 10px;
+	text-align: center;
+
+}
+.myfoot{
+	margin-top: 20px;
+	border-top: 3px solid black;
+
+}
+.myfootblock{
+	background-color: #b1c7de;
+	border-right:2px dotted white;
+	height: 100px;
+	text-align: center;
+	padding-top: 10px;
+}
